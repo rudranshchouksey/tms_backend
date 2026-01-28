@@ -1,17 +1,20 @@
-import app from "./app.js";
-import { CONFIG } from "./config/index.js";
+/* src/server.js */
 import { createApolloServer } from "./graphql/index.js";
 
-const startServer = async () => {
+async function startServer() {
+  try {
+    // This now returns the Express 'app'
+    const app = await createApolloServer(); 
 
- const server = await createApolloServer();
- server.applyMiddleware({ app });
+    const PORT = process.env.PORT || 4000;
 
- app.listen(CONFIG.server.port, () => {
-   console.log(
-    `🚀 Server running on http://localhost:${CONFIG.server.port}/graphql`
-   );
- });
-};
+    app.listen(PORT, () => {
+      console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`);
+    });
+  } catch (error) {
+    console.error("❌ Failed to start server:", error);
+    process.exit(1);
+  }
+}
 
 startServer();
