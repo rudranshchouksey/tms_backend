@@ -1,0 +1,24 @@
+# --- Dependencies ---
+# Ignore node_modules in both subfolders
+**/node_modules/
+
+# --- Environment & Secrets ---
+# Never upload API keys or secrets
+.env
+.env.local
+.env.development.local
+
+# --- Build Outputs ---
+# Ignore production builds
+**/dist/
+**/build/
+.vercel
+
+# --- Debug & Logs ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
