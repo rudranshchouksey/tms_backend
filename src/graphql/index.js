@@ -16,15 +16,20 @@ export const createApolloServer = async () => {
    typeDefs: [
      baseTypeDefs,
      shipmentTypeDefs,
-     authTypeDefs
+     authTypeDefs,
    ],
    resolvers: [
      shipmentResolvers,
      authResolvers
    ],
+   introspection: true, 
+    playground: true,
    context: ({ req }) => authMiddleware(req)
  });
-
+app.use(cors({
+  origin: 'https://your-frontend-url.vercel.app', 
+  credentials: true
+}));
  // IMPORTANT
  await server.start();
 
