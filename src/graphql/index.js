@@ -16,8 +16,10 @@ export const createApolloServer = async () => {
 
   // 1. Apply CORS before anything else
   app.use(cors({
-    origin: 'https://tms-frontend-nine.vercel.app/', // For development; replace with your Vercel URL for production
-    credentials: true
+    origin: 'https://tms-frontend-nine.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
   }));
 
   const server = new ApolloServer({
